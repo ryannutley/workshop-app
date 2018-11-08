@@ -2,11 +2,11 @@
 const Hapi   = require('hapi');
 const Server = new Hapi.Server();
 const Hello  = require('./lib/hello');
-const tracer = require('dd-trace').init()
+const tracer = require('dd-trace').init();
 
-const span = tracer.startSpan('web.request')
+const span = tracer.startSpan('web.request');
 
-span.setTag('my_tag', 'my_value')
+span.setTag('my_tag', 'my_value');
 
 
 Server.connection({ port: 3000 });
@@ -17,7 +17,7 @@ Server.route({
     handler: function (request, reply) {
 
         const result = Hello(decodeURIComponent(request.params.user));
-        span.finish()
+        span.finish();
         reply(result);
     }
 });
