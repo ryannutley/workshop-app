@@ -15,6 +15,6 @@
   "devDependencies": {
     "code": "^4.0.0",
     "lab": "^14.3.2",
-    "dd-trace"
+    "dd-trace": "latest"
   }
 }
