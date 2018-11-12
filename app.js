@@ -5,9 +5,7 @@ const Hello  = require('./lib/hello');
 const tracer = require('dd-trace').init();
 
 const span = tracer.startSpan('web.request');
-
-span.setTag('my_tag', 'my_value');
-
+span.setTag('sample_apm_tag', 'tag_value');
 
 Server.connection({ port: 3000 });
 
@@ -15,9 +13,7 @@ Server.route({
     method: 'GET',
     path: '/hello/{user}',
     handler: function (request, reply) {
-
         const result = Hello(decodeURIComponent(request.params.user));
-        span.finish();
         reply(result);
     }
 });
